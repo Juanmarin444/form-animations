@@ -22,11 +22,7 @@ containers.forEach((container) => {
       // Placeholder shift
       tl.to(placeholder, { top: -18, left: 0, scale: .9, duration: .5, ease: "Power2.out" }, '<')
     }
-
-
-
   })
-
 })
 
 // Revert back if input not focused
@@ -90,3 +86,31 @@ const colorize = (color, line ,placeholder) => {
   gsap.to(line, { stroke: color, duration: .75 })
   gsap.to(placeholder, { color: color, duration: .75 })
 }
+
+// Checkbox animation fill
+const checkbox = document.querySelector('.checkbox')
+const tl2 = gsap.timeline({ defaults: { duration: .5, ease: "Power2.out" } })
+
+const tickMarkPath = document.querySelector('.tick-mark path')
+const pathLength = tickMarkPath.getTotalLength()
+
+gsap.set(tickMarkPath, { strokeDashoffset: pathLength, strokeDasharray: pathLength })
+
+checkbox.addEventListener('click', () => {
+  if (checkbox.checked) {
+    tl2.to('.checkbox-fill', {
+      top: '0%'
+    })
+    tl2.fromTo(tickMarkPath, { strokeDashoffset: pathLength }, { strokeDashoffset: 0 }, '<50%')
+    tl2.to('.checkbox-label', { color: '#6391e8' }, '<')
+  } else {
+    tl2.fromTo(tickMarkPath, { strokeDashoffset: 0 }, { strokeDashoffset: pathLength })
+    tl2.to('.checkbox-fill', { top: '100%' }, '<50%')
+    tl2.to('.checkbox-label', { color: '#777474' }, '<')
+  }
+})
+
+// Character animation
+gsap.set('#eye', { transformOrigin: "center" })
+gsap.fromTo('#eye', { scaleY: 1 }, { scaleY: .3, repeat: -1, yoyo: true, repeatDelay: .5, ease: 'Power2.out' })
+gsap.fromTo('#eyebrow', { y: 0 },  { y: -1, repeat: -1, yoyo: true, repeatDelay: .5, ease: 'Power2.out'  })

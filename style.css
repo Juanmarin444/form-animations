@@ -21,6 +21,7 @@ form {
   border-radius: 2rem;
   padding: 3rem 5rem;
   display: flex;
+  position: relative;
 }
 
 .title {
@@ -83,6 +84,7 @@ form {
 .checkbox {
   opacity: 0;
   cursor: pointer;
+  z-index: 3;
 }
 
 .checkbox-label {
@@ -135,4 +137,12 @@ button {
   cursor: pointer;
   margin-top: 1rem;
   align-self: flex-start;
+}
+
+#character {
+  position: absolute;
+  transform: scale(.7) translate(0%, 30%);
+  bottom: 0;
+  left: 0;
+  transform-origin: bottom;
 }
