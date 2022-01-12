@@ -114,3 +114,18 @@ checkbox.addEventListener('click', () => {
 gsap.set('#eye', { transformOrigin: "center" })
 gsap.fromTo('#eye', { scaleY: 1 }, { scaleY: .3, repeat: -1, yoyo: true, repeatDelay: .5, ease: 'Power2.out' })
 gsap.fromTo('#eyebrow', { y: 0 },  { y: -1, repeat: -1, yoyo: true, repeatDelay: .5, ease: 'Power2.out'  })
+
+// Submit button
+const button = document.querySelector('button')
+const tl3 = gsap.timeline({ defaults: { duration: .75, ease: 'power2.out' } })
+
+gsap.set('#hand', { transformOrigin: 'left' })
+
+button.addEventListener('click', (event) => {
+  event.preventDefault()
+  tl3.to('.contact-right, .contact-left', { y: 30, opacity: 0, pointerEvents: 'none' })
+  tl3.to('form', { scale: .8 }, '<')
+  tl3.fromTo('.submitted', { opacity: 0, y: -30 }, { opacity: '100%', y: 0 }, '<80%')
+  //Hand wave
+  gsap.fromTo('#hand', { rotation: 0, y: 0 }, { rotation: -10, y: 2, ease: 'elastic(3, .3)', duration: 2, delay: 1 })
+})
